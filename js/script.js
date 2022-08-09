@@ -16,7 +16,7 @@ if(localStorage.getItem("random")){
 }
 //disapper and show the menu
 let scrollTest = 0; 
-$(window).scroll(e =>{console.log(e);
+$(window).scroll(() =>{
     if(!($('.main ul')[0].classList.contains("open"))){
         if(scrollTest - window.pageYOffset < 0){
             $(".main").css({
