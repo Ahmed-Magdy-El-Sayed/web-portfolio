@@ -4,14 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MyProject</title>
+    <title>MyPortfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js/jquery-3.6.0.js"></script>
     <link rel="stylesheet" href="css/all.min.css">
 </head>
 <body>
@@ -39,7 +37,7 @@
         <div class="landing" >
             <div class="layer">
                 <div class="text">
-                    <h1>We Are <span>Creative</span> Agency </h1>
+                    <h1>We Are <span></span></h1>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet atque minus facili.</p>
                 </div>
             </div>
@@ -52,16 +50,30 @@
             </div>
             <div class="options , container">
                 <h2>Options:-</h2>
-                <p>Page Mode</p>
-                <p class="text">Light Mode:</p>
-                <div class="lMode"></div> 
-                <br>
-                <p class="text">Dark Mode:</p>
-                <div class="dMode" style="border:3px dodgerblue solid"></div>
+                <div class="mode-setting">
+                    <p>Page Mode</p>
+                    <p class="text">Light Mode:</p>
+                    <div class="lMode"></div> 
+                    <br>
+                    <p class="text">Dark Mode:</p>
+                    <div class="dMode" style="border:3px var(--main-color) solid"></div>
+                </div>
                 <hr> 
-                <p>Changing Background Image :</p>
-                <span class="text">Stop</span>
-                <span class="text , active">Start</span>
+                <div class="main-color-setting">
+                    <p class="main-color">Page Main Color</p>
+                    <div class="colors">
+                        <span data-color="dodgerblue" class="blue active"></span>
+                        <span data-color="firebrick" class="red"></span>
+                        <span data-color="coral" class="orange"></span>
+                        <span data-color="forestgreen" class="green"></span>
+                    </div>
+                </div>
+                <hr> 
+                <div class="background-setting">
+                    <p>Changing Background Image :</p>
+                    <span class="text">Stop</span>
+                    <span class="text , active">Start</span>
+                </div>
             </div>
         </div>
         <!-- end setting -->
@@ -76,7 +88,7 @@
                         Incidunt, ipsa nisi? Quasi, fugit. Recusandae, incidunt assumenda!</p>
                 </div>
                 <div class="box-img">
-                    <img src="img/about-us.png" alt="illstraion Image">
+                    <img src="about-us.png" alt="illstraion Image">
                 </div>
             </div>
         </div>
@@ -143,12 +155,12 @@
             <div class="container">
                 <h1>My Gallery</h1>
                 <div class="gallery-box">
-                    <div><img src="img/1.jpg" alt=""></div> 
-                    <div><img src="img/2.jpg" alt=""></div>
-                    <div><img src="img/3.jpg" alt=""></div>
-                    <div><img src="img/4.jpg" alt=""></div>
-                    <div><img src="img/5.jpg" alt=""></div>
-                    <div><img src="img/6.jpg" alt=""></div>
+                    <div><img src="1.jpg" alt=""></div> 
+                    <div><img src="2.jpg" alt=""></div>
+                    <div><img src="3.jpg" alt=""></div>
+                    <div><img src="4.jpg" alt=""></div>
+                    <div><img src="5.jpg" alt=""></div>
+                    <div><img src="6.jpg" alt=""></div>
                 </div>
             </div>
         </div>
@@ -157,22 +169,26 @@
         <!-- start timeline -->
         <div class="timeline" >
             <div class="container">
-                <h1>The timeline</h1>
+                <h1>Timeline</h1>
                 <div class="year">2020</div>
                 <div class="left">
-                    <h3>Frist</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                        Error veniam doloribus facere voluptas assumenda ea minima alias deleniti, 
-                        soluta numquam labore reiciendis illum necessitatibus delectus similique, voluptate blanditiis.
-                    </p>
+                    <div class="left-content">
+                        <h3>Frist</h3>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                            Error veniam doloribus facere voluptas assumenda ea minima alias deleniti, 
+                            soluta numquam labore reiciendis illum necessitatibus delectus similique, voluptate blanditiis.
+                        </p>
+                    </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="right">
-                    <h3>second</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                        Error veniam doloribus facere voluptas assumenda ea minima alias deleniti, 
-                        soluta numquam labore reiciendis illum necessitatibus delectus similique, voluptate blanditiis.
-                    </p>
+                    <div class="right-content">
+                        <h3>second</h3>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                            Error veniam doloribus facere voluptas assumenda ea minima alias deleniti, 
+                            soluta numquam labore reiciendis illum necessitatibus delectus similique, voluptate blanditiis.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -183,32 +199,32 @@
             <div class="container">
                 <h1>Features</h1>
                 <div class="feature">
-                    <img src="img/Icon_01.png" alt="">
+                    <img src="Icon_01.png" alt="">
                     <h4>development</h4>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
                 </div>
                 <div class="feature">
-                    <img src="img/Icon_02.png" alt="">
+                    <img src="Icon_02.png" alt="">
                     <h4>development</h4>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
                 </div>
                 <div class="feature">
-                    <img src="img/Icon_03.png" alt="">
+                    <img src="Icon_03.png" alt="">
                     <h4>development</h4>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
                 </div>
                 <div class="feature">
-                    <img src="img/Icon_04.png" alt="">
+                    <img src="Icon_04.png" alt="">
                     <h4>development</h4>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
                 </div>
                 <div class="feature">
-                    <img src="img/Icon_05.png" alt="">
+                    <img src="Icon_05.png" alt="">
                     <h4>development</h4>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
                 </div>
                 <div class="feature">
-                    <img src="img/Icon_06.png" alt="">
+                    <img src="Icon_06.png" alt="">
                     <h4>development</h4>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
                 </div>
@@ -219,14 +235,13 @@
         <!-- start contact us -->
         <div class="contact" >
             <h1>Contact Us</h1>
-            <form action="">
+            <form class="sendMail" action="/sendMail" method="post">
                 <div class="input-form">
-                    <input type="text" name="name" placeholder="Enter Youer Name">
-                    <input type="email" name="email" placeholder="Enter Youer E-mail">
-                    <input type="number" name="phone" placeholder="Enter Youer Phone">
-                    <input type="text" name="subject" placeholder="Enter The Subject">
+                    <input type="text" name="name" placeholder="Enter Youer Name" required>
+                    <input type="email" name="email" placeholder="Enter Youer E-mail" required>
+                    <input type="text" name="subject" placeholder="Enter The Subject" required>
                 </div>
-                <textarea name="message" placeholder="Enter Youer Message"></textarea>
+                <textarea name="message" placeholder="Enter Youer Message" required></textarea>
                 <button type="submit">Send</button>
             </form>
         </div>
@@ -236,9 +251,8 @@
             <p class="footer-cont">
                 <i class="far fa-copyright"></i>
                 <span class="date"></span>
-                All rights reserved | 
+                All rights reserved
             </p>
-            <pre> Made by<a></a></pre>
         </div>
         <!-- end footer -->
     </div>
@@ -249,6 +263,7 @@
         </div>
     </div>
     <!-- end popup -->
+    <script src="js/jquery-3.6.0.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

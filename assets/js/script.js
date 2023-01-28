@@ -1,4 +1,5 @@
-//check localStorage before starting the page
+/* start checking localStorage */ 
+//before starting the page
 var oldMode = localStorage.getItem("mode");
 if(oldMode){
     setMode("."+oldMode);
@@ -14,9 +15,16 @@ if(localStorage.getItem("random")){
         $($(".options span")[1]).addClass("active");
     }
 }
+//check mainColor
+var mainColor = localStorage.getItem('mainColor');
+if(mainColor){
+    document.querySelector(':root').style.setProperty('--main-color',mainColor)
+    $(".options .main-color-setting .active").removeClass('active');
+    $('.options .main-color-setting .colors span[data-color='+mainColor+']').addClass('active')
+}
 //disapper and show the menu
 let scrollTest = 0; 
-$(window).scroll(e =>{console.log(e);
+$(window).scroll( ()=>{
     if(!($('.main ul')[0].classList.contains("open"))){
         if(scrollTest - window.pageYOffset < 0){
             $(".main").css({
@@ -58,7 +66,7 @@ $(".setting").click(e => {
 
 function setMode (button){
     $(".options div").css("border","");
-    $(button).css("border","3px dodgerblue solid")
+    $(button).css("border","3px var(--main-color) solid")
     $(":root").css("--background-color",$(button).css("background-color")) ;
     $(":root").css("--font-color",$(button).css("color")) ;
 
@@ -73,7 +81,7 @@ function setMode (button){
     
 }
 
-$(".options div").click(function(){setMode(this);});
+$(".options .mode-setting div").click(function(){setMode(this);});
 
 //set random backgrond img 
 
@@ -86,7 +94,7 @@ function changeImg(){
                 randomNum = (Math.floor(Math.random()*4))+1;
             }
             imgTest = randomNum ;
-            $(".landing").css("background-image",'url("img/'+randomNum+'.jpg")');
+            $(".landing").css("background-image",'url('+randomNum+'.jpg)');
         },5000);
 }
 
@@ -94,9 +102,18 @@ if(Random == "Start"){
     changeImg();
 }
 
+//change website main color
+
+$(".options .main-color-setting .colors span").click(e=>{
+    $(".options .main-color-setting .active").removeClass('active');
+    $(e.target).addClass('active');
+    document.querySelector(":root").style.setProperty('--main-color', e.target.dataset.color)
+    localStorage.setItem("mainColor",e.target.dataset.color);
+})
+
 //control the changing of background img
 
-$(".options span").click(e => {
+$(".options .background-setting span").click(e => {
     if(e.target.innerHTML != Random){
         e.target.parentElement.querySelectorAll(".active").forEach(element => {
             $(element).removeClass("active");
@@ -105,7 +122,7 @@ $(".options span").click(e => {
         if(e.target.innerHTML == "Stop"){
         Random = "Stop";
         clearInterval(randomImg);
-        $(".landing").css("background-image",'url("img/1.jpg")');
+        $(".landing").css("background-image",'url(1.jpg)');
         }else{
             Random = "Start";
             changeImg();
@@ -114,9 +131,28 @@ $(".options span").click(e => {
     localStorage.setItem("random",Random);
 });
 
+//writing animation
+let nameWords = " Creative Agency".split("");
+let landingHeight = document.querySelector(".landing").offsetHeight;
+let addChar;
+let count = 0;
+document.querySelector(".landing h1").innerHTML += `<div class="movable">|</div>`;
+addChar = setInterval(function(){
+    if(count < nameWords.length){
+        document.querySelector(".landing .layer .text span").innerHTML += nameWords[count];
+        count++;
+    }else{
+        setTimeout(()=>{
+            count = 0;
+            document.querySelector(".landing .layer .text span").innerHTML = "";
+        },500)
+    }
+},250)
+
 //show about us content
 $(window).scroll(function(){
-    if(window.pageYOffset > ($(".about-us .container")[0].offsetHeight)){
+    let aboutUs = $(".about-us .container")[0];
+    if(aboutUs.getBoundingClientRect().top- aboutUs.clientHeight < 0){
         $(".about-us .box-info").css({
             right: '0',
             opacity: '1'
@@ -164,6 +200,20 @@ $(window).scroll(function(){
     }
 })
 
+// timeline animation
+window.onscroll = function() {
+document.querySelectorAll(".timeline .left-content").forEach(ele=>{
+        if(ele.getBoundingClientRect().top- ele.clientHeight < 0){
+            ele.style.left = 0;
+        }
+    })
+    document.querySelectorAll(".timeline .right-content").forEach(ele=>{
+        if(ele.getBoundingClientRect().top- ele.clientHeight < 0){
+            ele.style.right = 0;
+        }
+    })
+}
+
 //make the popup when click any image in gallery
 let that;
 $(".gallery-box img").click(function(){
@@ -195,6 +245,29 @@ $(".main ul li a").click(e =>{
     e.preventDefault();
     $(e.target.dataset.section)[0].scrollIntoView({behavior:'smooth'});
 });
+
+//send contact us message
+
+$(".sendMail").submit(e=>{
+    var form = e.target;
+    e.preventDefault()
+    fetch(form.action,{
+        method:"post",
+        headers:{
+            'content-type':'application/json'
+        },
+        body:JSON.stringify({
+            name:form.name,
+            email:form.email,
+            subject: form.subject,
+            message:form.message
+        })
+    }).then(res=>res.json()).then(result=>{
+        console.error(JSON.stringify(result))
+        result.err? alert("err: failed to send the message") : alert("the message send successfully");
+    })
+})
+
 //open & close mobile menu
 
 $(".menu").click(e => {
@@ -233,29 +306,6 @@ window.matchMedia("(min-width:1024px)").onchange = e =>{
 }
 //footer copey rigte year
 document.querySelector(".footer .date").innerText = new Date().getFullYear();
-
-//footer animation
-let nameWords = " Ahmed Magdy.".split("");
-let foHeight = document.querySelector(".footer").offsetHeight;
-let addChar;
-let count = 0;
-document.querySelector(".footer pre").innerHTML += `<span class="movable">|</span>`;
-window.onscroll = function() {
-    if(window.pageYOffset > (document.querySelector("body").offsetHeight - foHeight - window.innerHeight)){
-        document.querySelector(".footer pre").style.left = "0";
-    }
-}
-addChar = setInterval(function(){
-    if(count < nameWords.length){
-        document.querySelector(".footer pre a").innerHTML += nameWords[count];
-        count++;
-    }else{
-        setTimeout(()=>{
-            count = 0;
-            document.querySelector(".footer pre a").innerHTML = "";
-        },500)
-    }
-},250)
 
 $(window).scroll(function(){
     for(let c = 0; c < $(".cut").length; c++){
